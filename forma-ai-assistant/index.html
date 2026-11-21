@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FORMA AI · ИИ-консультант — демо для портфолио</title>
+  <meta name="description" content="Живой пример ИИ-консультанта FORMA AI: отвечает на вопросы по услугам и ценам, собирает заявки, записывает на консультацию. Встраивается на любой сайт." />
+
+  <!--可以直接嵌入到任何页面：替换下面 4 строки на свой путь -->
+  <link rel="stylesheet" href="forma-chat.css" />
+
+  <style>
+    /* ---- Демо-страница FORMA AI (не входит в виджет) ---- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #ffffff; color: #0a0a0a; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* --- Шапка --- */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .nav-logo span { color: #999; font-weight: 400; margin-left: 8px; }
+
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      color: #0a0a0a;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    /* --- Hero --- */
+    .hero { padding: 80px 0 60px; border-bottom: 1px solid #f0f0f0; }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: #999;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+    .hero h1 em { font-style: normal; color: #999; }
+    .hero-sub {
+      font-size: 18px;
+      color: #666;
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #0a0a0a;
+      color: #fff;
+      padding: 16px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s;
+    }
+    .hero-cta:hover { transform: translateY(-1px); }
+    .hero-cta-arrow { font-size: 16px; }
+
+    /* --- Разделы --- */
+    .section {
+      padding: 80px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .section-num {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: #999;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+
+    .section p {
+      font-size: 17px;
+      color: #444;
+      max-width: 640px;
+      margin-bottom: 16px;
+    }
+
+    /* --- Сетка возможностей --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .feature {
+      padding: 28px;
+      border: 1px solid #ececec;
+      border-radius: 16px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature:hover {
+      border-color: #0a0a0a;
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #0a0a0a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .feature h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .feature p {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* --- Демо-блок --- */
+    .demo-block {
+      background: #fafafa;
+      border-radius: 20px;
+      padding: 48px;
+      margin-top: 48px;
+      text-align: center;
+    }
+    .demo-block h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .demo-block p {
+      color: #666;
+      margin: 0 auto 24px;
+      max-width: 460px;
+    }
+    .demo-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0a0a0a;
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+    .demo-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    /* --- Технический блок --- */
+    .tech-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .tech-item {
+      padding: 16px 20px;
+      background: #fafafa;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+    .tech-item strong {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .tech-item code {
+      font-family: "SF Mono", Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: #0a0a0a;
+    }
+
+    /* --- Подвал --- */
+    .footer {
+      padding: 60px 0 40px;
+      color: #666;
+      font-size: 13px;
+    }
+    .footer-tagline {
+      font-size: 18px;
+      color: #0a0a0a;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .footer-meta {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .footer a {
+      color: #0a0a0a;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { padding: 48px 0; }
+      .section { padding: 56px 0; }
+      .demo-block { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="container">
+    <nav class="nav">
+      <div class="nav-logo">FORMA AI <span>· ИИ-консультант</span></div>
+      <div class="nav-links">
+        <a href="#features">Возможности</a>
+        <a href="#demo">Демо</a>
+        <a href="#tech">Технологии</a>
+        <a href="https://snegggg970-gif.github.io/forma-ai/" target="_blank">Сайт студии ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero-eyebrow">ПРОЕКТ В ПОРТФОЛИО · 2025</div>
+      <h1>ИИ-консультант <em>для digital-студии</em></h1>
+      <p class="hero-sub">
+        Живой пример чат-бота, который отвечает на вопросы об услугах и ценах,
+        помогает оставить заявку и записаться на консультацию. Работает на статике
+        из коробки, подключается к GigaChat или YandexGPT при необходимости.
+      </p>
+      <button class="hero-cta" onclick="window.FORMA_CHAT.open()">
+        Открыть демо-чат
+        <span class="hero-cta-arrow">↗</span>
+      </button>
+    </section>
+
+    <!-- Возможности -->
+    <section class="section container" id="features">
+      <div class="section-num">01 / ВОЗМОЖНОСТИ</div>
+      <h2>Что умеет ИИ-консультант FORMA AI</h2>
+      <p>
+        Чат построен на базе знаний студии и работает в двух режимах:
+        демо (без API-ключа) и live (с реальной языковой моделью).
+        Один и тот же сценарий используется и в виджете на сайте, и в Telegram-боте.
+      </p>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="feature-icon">01</div>
+          <h3>Q&amp;A по услугам</h3>
+          <p>Отвечает на вопросы о сайте-визитке, лендинге, ботах, ИИ-консультанте и автоматизации. Цены — из актуального прайса.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">02</div>
+          <h3>Сбор заявок</h3>
+          <p>Пошаговый сценарий: имя → контакт → описание задачи. Заявка уходит в Telegram или на email команды.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">03</div>
+          <h3>Запись на консультацию</h3>
+          <p>Выбор услуги → удобное время → контактные данные. Готовая запись передаётся команде FORMA AI.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">04</div>
+          <h3>Примеры работ</h3>
+          <p>По запросу показывает кейсы из портфолио — например, проект LUMI BEAUTY — со ссылкой на живой сайт.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">05</div>
+          <h3>Быстрые реплики</h3>
+          <p>Под каждым ответом — чипсы с дальнейшими шагами. Клиент не задумывается, что спросить дальше.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">06</div>
+          <h3>Брендовый интерфейс</h3>
+          <p>Минимализм, монохром, та же типографика, что и на сайте студии. Единый визуальный язык.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Демо -->
+    <section class="section container" id="demo">
+      <div class="section-num">02 / ЖИВОЕ ДЕМО</div>
+      <h2>Попробуйте прямо сейчас</h2>
+      <p>Нажмите на кнопку — откроется чат-виджет в правом нижнем углу. Спросите про цены, попросите записать на консультацию или оставьте заявку.</p>
+
+      <div class="demo-block">
+        <h3>ИИ-консультант онлайн</h3>
+        <p>Бот работает в mock-режиме — отвечает сразу на основе базы знаний FORMA AI. Без задержек и без API-ключа.</p>
+        <button class="demo-cta" onclick="window.FORMA_CHAT.open()">
+          <span class="demo-pulse"></span>
+          Открыть чат
+        </button>
+      </div>
+    </section>
+
+    <!-- Технологии -->
+    <section class="section container" id="tech">
+      <div class="section-num">03 / ТЕХНОЛОГИИ</div>
+      <h2>Под капотом</h2>
+      <p>Виджет собирается из трёх файлов и не требует сборки. Можно выложить на GitHub Pages как есть — он заработает сразу. Для подключения реальной языковой модели нужен небольшой serverless-прокси (Cloudflare Worker или Vercel function).</p>
+
+      <div class="tech-list">
+        <div class="tech-item"><strong>Фронтенд</strong><code>HTML / CSS / Vanilla JS</code></div>
+        <div class="tech-item"><strong>Размер</strong><code>~22 KB (всё включено)</code></div>
+        <div class="tech-item"><strong>Хостинг</strong><code>GitHub Pages / любой статический</code></div>
+        <div class="tech-item"><strong>LLM (опц.)</strong><code>GigaChat / YandexGPT</code></div>
+        <div class="tech-item"><strong>Прокси (опц.)</strong><code>Cloudflare Worker / Vercel</code></div>
+        <div class="tech-item"><strong>Зависимости</strong><code>0 внешних библиотек</code></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <div class="footer-tagline">Меньше шума. Больше смысла.</div>
+    <div class="footer-meta">
+      <div>© FORMA AI · Независимая digital-студия</div>
+      <div>
+        <a href="https://snegggg970-gif.github.io/forma-ai/" target="_blank">forma-ai.github.io</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FORMA AI Chat Widget ===== -->
+  <script>
+    // Конфигурация виджета.
+    // mode: 'mock' — работает сразу без API-ключа (для демо на статике).
+    // mode: 'live' + llmEndpoint — подключается реальный LLM через serverless-прокси.
+    window.FORMA_CHAT_CONFIG = {
+      mode: 'mock',
+      llmProvider: 'gigachat',
+      llmEndpoint: '',
+      autoOpen: false,
+      // Раскомментируйте, чтобы виджет сам отправлял заявки вам в Telegram/на почту:
+      // leadEndpoint: 'https://your-worker.example.workers.dev/api/lead',
+    };
+  </script>
+  <script src="knowledge-base.js"></script>
+  <script src="llm-adapter.js"></script>
+  <script src="forma-chat.js"></script>
+</body>
+</html>
