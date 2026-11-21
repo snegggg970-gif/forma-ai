@@ -1,1601 +1,407 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f4f0e9">
-<meta name="description" content="FORMA AI — цифровая студия для малого бизнеса. Создание сайтов, ИИ-ассистентов, Telegram-ботов и автоматизация процессов.">
-<meta name="robots" content="index, follow">
-<title>FORMA AI — цифровые решения для бизнеса</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --paper: #f4f0e9;
-  --light: #faf8f4;
-  --sand: #ded3c4;
-  --ink: #242421;
-  --muted: #77736c;
-  --accent: #9b8268;
-  --line: rgba(36,36,33,.14);
-  --sans: "DM Sans", Arial, sans-serif;
-  --display: "Manrope", Arial, sans-serif;
-  --ease: cubic-bezier(.2,.7,.2,1);
-}
-
-* { box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
-
-body {
-  margin: 0;
-  color: var(--ink);
-  background: var(--paper);
-  font-family: var(--sans);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-body.menu-open { overflow: hidden; }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button, input, textarea { font: inherit; }
-
-button, a { -webkit-tap-highlight-color: transparent; }
-
-.container {
-  width: min(1200px, calc(100% - 64px));
-  margin-inline: auto;
-}
-
-.section { padding: 116px 0; }
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: .19em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.eyebrow::before {
-  content: "";
-  width: 24px;
-  height: 1px;
-  background: var(--accent);
-}
-
-h1, h2, h3 {
-  font-family: var(--display);
-  font-weight: 500;
-  letter-spacing: -.055em;
-}
-
-h2 {
-  font-size: clamp(38px, 5vw, 66px);
-  line-height: 1.02;
-  margin: 18px 0 0;
-}
-
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 32px;
-  margin-bottom: 52px;
-}
-
-.section-note {
-  max-width: 330px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.8;
-  margin: 0 0 5px;
-}
-
-.button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  min-height: 54px;
-  padding: 0 24px;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: .3s var(--ease);
-}
-
-.button:hover {
-  background: transparent;
-  color: var(--ink);
-  transform: translateY(-2px);
-}
-
-.button .arrow {
-  font-size: 18px;
-  transition: transform .3s;
-}
-
-.button:hover .arrow {
-  transform: translate(3px,-3px);
-}
-
-.button-light {
-  color: var(--ink);
-  background: var(--light);
-  border-color: var(--light);
-}
-
-.button-light:hover {
-  color: white;
-  background: transparent;
-  border-color: white;
-}
-
-.text-link {
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 700;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 8px;
-}
-
-.text-link span { transition: transform .25s; }
-.text-link:hover span { transform: translate(3px,-3px); }
-
-/* HEADER */
-
-.header {
-  height: 82px;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 20;
-  border-bottom: 1px solid rgba(255,255,255,.2);
-  color: white;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-}
-
-.logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font: 800 17px var(--display);
-  letter-spacing: .12em;
-  white-space: nowrap;
-}
-
-.logo-mark {
-  width: 25px;
-  height: 25px;
-  border: 1px solid currentColor;
-  display: grid;
-  place-items: center;
-  transform: rotate(45deg);
-  font: 500 14px Georgia, serif;
-}
-
-.logo-mark span { transform: rotate(-45deg); }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: clamp(20px, 3vw, 42px);
-  margin-left: auto;
-  margin-right: 20px;
-}
-
-.nav-links a {
-  color: rgba(255,255,255,.8);
-  font-size: 11px;
-  transition: color .2s;
-}
-
-.nav-links a:hover { color: white; }
-
-.header .button {
-  min-height: 42px;
-  padding: 0 17px;
-  font-size: 10px;
-  background: transparent;
-  border-color: rgba(255,255,255,.55);
-  color: white;
-}
-
-.header .button:hover {
-  background: white;
-  color: var(--ink);
-}
-
-.menu-toggle {
-  display: none;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255,255,255,.5);
-  color: white;
-  background: transparent;
-  cursor: pointer;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 17px;
-  height: 1px;
-  background: currentColor;
-  margin: 5px auto;
-  transition: transform .25s;
-}
-
-/* HERO */
-
-.hero {
-  min-height: 760px;
-  height: min(900px, 100svh);
-  position: relative;
-  display: flex;
-  align-items: center;
-  color: white;
-  background: #777066;
-  overflow: hidden;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(22,22,20,.68), rgba(22,22,20,.42) 48%, rgba(22,22,20,.12)),
-    linear-gradient(0deg, rgba(22,22,20,.28), transparent 45%),
-    url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2200&q=85") center/cover;
-  animation: heroReveal 1.3s var(--ease) both;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  padding-top: 70px;
-  max-width: 850px;
-}
-
-.hero .eyebrow { color: rgba(255,255,255,.75); }
-
-.hero h1 {
-  font-size: clamp(54px, 8.2vw, 112px);
-  line-height: .99;
-  max-width: 900px;
-  margin: 28px 0;
-}
-
-.hero h1 em {
-  font-family: Georgia, serif;
-  font-weight: 400;
-}
-
-.hero-copy {
-  max-width: 440px;
-  color: rgba(255,255,255,.78);
-  font-size: 15px;
-  line-height: 1.85;
-  margin-bottom: 34px;
-}
-
-.hero-bottom {
-  position: absolute;
-  z-index: 2;
-  bottom: 35px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.hero-index {
-  color: rgba(255,255,255,.7);
-  font-size: 10px;
-  letter-spacing: .18em;
-}
-
-.scroll-cue {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: rgba(255,255,255,.75);
-  font-size: 10px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-
-.scroll-cue i {
-  width: 40px;
-  height: 1px;
-  background: rgba(255,255,255,.65);
-}
-
-/* INTRO */
-
-.intro-strip {
-  background: var(--light);
-  border-bottom: 1px solid var(--line);
-}
-
-.intro-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 50px;
-  padding: 34px 0;
-  align-items: center;
-}
-
-.intro-label {
-  font-size: 10px;
-  letter-spacing: .17em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.intro-text {
-  font: 400 clamp(18px, 2vw, 24px)/1.5 var(--display);
-  letter-spacing: -.03em;
-  max-width: 790px;
-  margin: 0;
-}
-
-.intro-text span { color: var(--accent); }
-
-/* SERVICES */
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-}
-
-.service-card {
-  min-height: 285px;
-  padding: 28px 24px 25px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  transition: background .35s, transform .35s;
-}
-
-.service-card:hover {
-  background: var(--light);
-  transform: translateY(-5px);
-}
-
-.service-number {
-  color: var(--accent);
-  font-size: 10px;
-  letter-spacing: .12em;
-}
-
-.service-icon {
-  width: 46px;
-  height: 46px;
-  margin: 34px 0 25px;
-  border: 1px solid #c9b9a5;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font: 20px Georgia, serif;
-}
-
-.service-card h3 {
-  font-size: 22px;
-  margin: 0 0 12px;
-}
-
-.service-card p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.75;
-  margin: 0;
-  max-width: 230px;
-}
-
-/* PORTFOLIO */
-
-.portfolio { background: #e9e2d8; }
-
-.project-card {
-  display: grid;
-  grid-template-columns: 1.12fr .88fr;
-  min-height: 520px;
-  background: var(--light);
-}
-
-.project-image {
-  position: relative;
-  overflow: hidden;
-  min-height: 460px;
-  background: #b5a99b;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  min-height: 460px;
-  object-fit: cover;
-  transition: transform .8s var(--ease);
-}
-
-.project-card:hover .project-image img {
-  transform: scale(1.035);
-}
-
-.project-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(28,25,22,.2), transparent 45%);
-  pointer-events: none;
-}
-
-.project-tag {
-  position: absolute;
-  z-index: 1;
-  top: 24px;
-  left: 24px;
-  color: white;
-  font-size: 9px;
-  letter-spacing: .17em;
-  text-transform: uppercase;
-}
-
-.project-info {
-  padding: clamp(34px, 5vw, 68px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.project-info h3 {
-  font-size: clamp(42px, 5vw, 64px);
-  margin: 20px 0 15px;
-}
-
-.project-info p {
-  max-width: 360px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.85;
-  margin-bottom: 30px;
-}
-
-.project-meta {
-  display: flex;
-  gap: 24px;
-  padding-top: 24px;
-  margin-top: auto;
-  width: 100%;
-  border-top: 1px solid var(--line);
-}
-
-.project-meta div {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.project-meta small {
-  color: var(--muted);
-  font-size: 9px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-
-.project-meta strong {
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* PROCESS */
-
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-}
-
-.process-item {
-  padding: 28px 25px 0 0;
-  position: relative;
-}
-
-.process-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 7px;
-  right: 18px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.process-no {
-  color: var(--accent);
-  font: italic 22px Georgia, serif;
-}
-
-.process-item h3 {
-  font-size: 22px;
-  margin: 27px 0 12px;
-}
-
-.process-item p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.8;
-  max-width: 230px;
-  margin: 0;
-}
-
-/* ABOUT */
-
-.about {
-  background: var(--ink);
-  color: var(--light);
-}
-
-.about-layout {
-  display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  gap: 10%;
-  align-items: center;
-}
-
-.about-visual {
-  min-height: 480px;
-  position: relative;
-  overflow: hidden;
-  background: #8e8274;
-}
-
-.about-visual img {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-  filter: saturate(.72);
-}
-
-.about-visual::after {
-  content: "F / AI";
-  position: absolute;
-  bottom: 20px;
-  right: 25px;
-  color: rgba(255,255,255,.85);
-  font: italic 30px Georgia, serif;
-}
-
-.about-copy .eyebrow { color: #bdb3a6; }
-
-.about-copy h2 { margin: 20px 0 25px; }
-
-.about-copy h2 em {
-  font-family: Georgia, serif;
-  font-weight: 400;
-  color: #c7b49d;
-}
-
-.about-copy > p {
-  color: #bdb9b1;
-  font-size: 13px;
-  line-height: 1.9;
-  max-width: 480px;
-}
-
-.benefits {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 23px 30px;
-  margin-top: 38px;
-}
-
-.benefit {
-  border-top: 1px solid rgba(255,255,255,.2);
-  padding-top: 15px;
-}
-
-.benefit strong {
-  display: block;
-  font: 500 16px var(--display);
-  margin-bottom: 7px;
-}
-
-.benefit span {
-  color: #aaa69e;
-  font-size: 11px;
-  line-height: 1.6;
-}
-
-/* CONTACT */
-
-.contact { background: var(--sand); }
-
-.contact-layout {
-  display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  gap: 10%;
-}
-
-.contact-copy h2 { margin: 20px 0 25px; }
-
-.contact-copy p {
-  color: #625d56;
-  font-size: 13px;
-  line-height: 1.9;
-  max-width: 360px;
-}
-
-.contact-note {
-  margin-top: 45px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(36,36,33,.2);
-  color: #625d56;
-  font-size: 11px;
-  line-height: 1.7;
-  max-width: 300px;
-}
-
-.contact-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px 18px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.field-full { grid-column: 1 / -1; }
-
-.field label {
-  font-size: 10px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: #625d56;
-}
-
-.field input, .field textarea {
-  width: 100%;
-  border: 0;
-  border-bottom: 1px solid rgba(36,36,33,.35);
-  border-radius: 0;
-  background: transparent;
-  padding: 10px 0 13px;
-  color: var(--ink);
-  outline: none;
-  font-size: 13px;
-  transition: border-color .2s;
-}
-
-.field input:focus, .field textarea:focus {
-  border-color: var(--ink);
-}
-
-.field input::placeholder, .field textarea::placeholder {
-  color: #898177;
-}
-
-.field textarea {
-  resize: vertical;
-  min-height: 85px;
-}
-
-.form-bottom {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 18px;
-  margin-top: 8px;
-}
-
-.form-hint {
-  color: #6f685f;
-  font-size: 10px;
-  line-height: 1.6;
-  max-width: 230px;
-}
-
-.form-status {
-  grid-column: 1 / -1;
-  min-height: 20px;
-  font-size: 12px;
-  color: #3d5946;
-  margin: 0;
-}
-
-.form-status.error { color: #8b3e35; }
-
-/* FOOTER */
-
-.footer {
-  background: #242421;
-  color: #f4f0e9;
-  padding: 34px 0;
-}
-
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid rgba(255,255,255,.17);
-}
-
-.footer .logo { font-size: 15px; }
-
-.footer-caption {
-  color: #aaa69e;
-  font-size: 11px;
-  margin: 0;
-}
-
-.footer-links {
-  display: flex;
-  gap: 24px;
-}
-
-.footer-links a {
-  color: #c5c0b8;
-  font-size: 11px;
-  transition: color .2s;
-}
-
-.footer-links a:hover { color: white; }
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding-top: 20px;
-  color: #8e8a82;
-  font-size: 9px;
-  letter-spacing: .04em;
-}
-
-/* ANIMATIONS */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .75s var(--ease), transform .75s var(--ease);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-@keyframes heroReveal {
-  from { opacity: .5; transform: scale(1.07); }
-  to { opacity: 1; transform: scale(1.025); }
-}
-
-/* TABLET */
-
-@media (max-width: 900px) {
-  .container { width: min(100% - 44px, 1200px); }
-
-  .nav-links {
-    gap: 18px;
-    margin-right: 5px;
-  }
-
-  .nav-links a { font-size: 10px; }
-
-  .header .button { padding: 0 12px; }
-
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
-
-  .service-card { min-height: 250px; }
-
-  .about-layout, .contact-layout { gap: 7%; }
-
-  .about-visual, .about-visual img {
-    min-height: 420px;
-    height: 420px;
-  }
-}
-
-/* MOBILE */
-
-@media (max-width: 680px) {
-  html { scroll-padding-top: 72px; }
-
-  .container { width: calc(100% - 40px); }
-
-  .section { padding: 78px 0; }
-
-  .section-head {
-    display: block;
-    margin-bottom: 34px;
-  }
-
-  .section-note { margin-top: 18px; }
-
-  .header { height: 70px; }
-
-  .logo { font-size: 15px; }
-
-  .menu-toggle {
-    display: block;
-    margin-left: auto;
-  }
-
-  .header .nav > .button { display: none; }
-
-  .nav-links {
-    position: fixed;
-    inset: 70px 0 0;
-    margin: 0;
-    padding: 38px 28px;
-    background: var(--ink);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 26px;
-    transform: translateX(100%);
-    transition: transform .35s var(--ease);
-  }
-
-  .nav-links a {
-    font: 500 26px var(--display);
-    color: var(--paper);
-  }
-
-  .menu-open .nav-links { transform: translateX(0); }
-
-  .menu-open .menu-toggle span:first-child {
-    transform: translateY(3px) rotate(45deg);
-  }
-
-  .menu-open .menu-toggle span:last-child {
-    transform: translateY(-3px) rotate(-45deg);
-  }
-
-  .hero {
-    min-height: 700px;
-    height: 94svh;
-    max-height: 850px;
-  }
-
-  .hero-bg { background-position: 58% center; }
-
-  .hero-content { padding-top: 50px; }
-
-  .hero h1 {
-    font-size: clamp(48px, 14vw, 76px);
-    margin: 23px 0;
-  }
-
-  .hero-copy {
-    font-size: 13px;
-    max-width: 340px;
-  }
-
-  .hero-bottom { bottom: 24px; }
-
-  .scroll-cue { display: none; }
-
-  .intro-grid {
-    grid-template-columns: 1fr;
-    gap: 17px;
-    padding: 27px 0;
-  }
-
-  .intro-text { font-size: 19px; }
-
-  h2 { font-size: 42px; }
-
-  .services-grid { grid-template-columns: 1fr 1fr; }
-
-  .service-card {
-    min-height: 235px;
-    padding: 20px 16px;
-  }
-
-  .service-icon { margin: 27px 0 20px; }
-
-  .service-card h3 { font-size: 18px; }
-
-  .service-card p { font-size: 11px; }
-
-  .project-card { grid-template-columns: 1fr; }
-
-  .project-image, .project-image img {
-    min-height: 300px;
-    height: 300px;
-  }
-
-  .project-info {
-    min-height: 390px;
-    padding: 32px 25px;
-  }
-
-  .project-info h3 { font-size: 48px; }
-
-  .process-grid {
-    grid-template-columns: 1fr 1fr;
-    row-gap: 35px;
-  }
-
-  .process-item { padding-right: 15px; }
-
-  .process-item:not(:last-child)::after { display: none; }
-
-  .process-item h3 {
-    font-size: 19px;
-    margin-top: 18px;
-  }
-
-  .about-layout, .contact-layout {
-    grid-template-columns: 1fr;
-    gap: 38px;
-  }
-
-  .about-visual, .about-visual img {
-    min-height: 310px;
-    height: 310px;
-  }
-
-  .about-copy h2 { font-size: 42px; }
-
-  .benefits { gap: 20px 16px; }
-
-  .benefit strong { font-size: 14px; }
-
-  .contact-copy h2 { font-size: 44px; }
-
-  .contact-note { margin-top: 25px; }
-
-  .contact-form {
-    grid-template-columns: 1fr;
-    gap: 21px;
-  }
-
-  .field-full, .form-bottom, .form-status {
-    grid-column: 1;
-  }
-
-  .form-bottom {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .footer-top {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .footer-links {
-    flex-wrap: wrap;
-    gap: 16px 22px;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 9px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
-}
-</style>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "FORMA AI",
-  "description": "Цифровая студия для малого бизнеса: сайты, ИИ-ассистенты, Telegram-боты и автоматизация.",
-  "areaServed": "Worldwide",
-  "serviceType": [
-    "Веб-разработка",
-    "ИИ-ассистенты",
-    "Telegram-боты",
-    "Автоматизация бизнес-процессов"
-  ]
-}
-</script>
-</head>
-
-<body>
-
-<header class="header">
-  <nav class="nav container" aria-label="Главная навигация">
-
-    <a class="logo" href="#top" aria-label="FORMA AI — на главную">
-      <span class="logo-mark" aria-hidden="true"><span>F</span></span>
-      FORMA AI
-    </a>
-
-    <div class="nav-links" id="navLinks">
-      <a href="#services">Услуги</a>
-      <a href="#portfolio">Проекты</a>
-      <a href="#process">Процесс</a>
-      <a href="#about">О студии</a>
-      <a href="#contacts">Контакты</a>
-    </div>
-
-    <a class="button" href="#contacts">
-      Обсудить проект <span class="arrow" aria-hidden="true">↗</span>
-    </a>
-
-    <button
-      class="menu-toggle"
-      id="menuToggle"
-      type="button"
-      aria-label="Открыть меню"
-      aria-expanded="false"
-      aria-controls="navLinks">
-      <span></span><span></span>
-    </button>
-
-  </nav>
-</header>
-
-<main id="top">
-
-<!-- HERO -->
-
-<section class="hero" aria-labelledby="heroTitle">
-  <div class="hero-bg" aria-hidden="true"></div>
-
-  <div class="container">
-    <div class="hero-content">
-
-      <span class="eyebrow">Независимая digital-студия</span>
-
-      <h1 id="heroTitle">
-        Цифровые решения<br>
-        для <em>живого</em> бизнеса
-      </h1>
-
-      <p class="hero-copy">
-        Создаём сайты, ИИ-ассистентов и умные инструменты,
-        которые помогают небольшим компаниям работать проще,
-        быстрее и увереннее.
-      </p>
-
-      <a class="button button-light" href="#portfolio">
-        Наши проекты <span class="arrow" aria-hidden="true">↗</span>
-      </a>
-
-    </div>
-  </div>
-
-  <div class="container hero-bottom">
-    <span class="hero-index">01 — 04 / FORMA AI</span>
-    <span class="scroll-cue"><i></i> Листайте вниз</span>
-  </div>
-</section>
-
-<!-- INTRO -->
-
-<section class="intro-strip">
-  <div class="container intro-grid">
-
-    <span class="intro-label">Идея FORMA AI</span>
-
-    <p class="intro-text">
-      Технологии должны освобождать время и раскрывать потенциал бизнеса —
-      <span>а не усложнять его.</span>
-    </p>
-
-  </div>
-</section>
-
-<!-- SERVICES -->
-
-<section class="section" id="services">
-  <div class="container">
-
-    <div class="section-head reveal">
-      <div>
-        <span class="eyebrow">Что мы создаём</span>
-        <h2>Услуги студии</h2>
-      </div>
-
-      <p class="section-note">
-        Подбираем инструменты под реальные задачи компании —
-        от первого сайта до автоматизации ежедневных процессов.
-      </p>
-    </div>
-
-    <div class="services-grid">
-
-      <article class="service-card reveal">
-        <span class="service-number">01 / DIGITAL</span>
-        <div class="service-icon" aria-hidden="true">↗</div>
-        <h3>Создание сайтов</h3>
-        <p>Современные сайты и посадочные страницы, которые ясно рассказывают о вашем продукте.</p>
-      </article>
-
-      <article class="service-card reveal">
-        <span class="service-number">02 / AI</span>
-        <div class="service-icon" aria-hidden="true">✳</div>
-        <h3>ИИ-ассистенты</h3>
-        <p>Помощники для ответов на вопросы, работы с информацией и поддержки клиентов.</p>
-      </article>
-
-      <article class="service-card reveal">
-        <span class="service-number">03 / MESSENGERS</span>
-        <div class="service-icon" aria-hidden="true">⌁</div>
-        <h3>Telegram-боты</h3>
-        <p>Боты для заявок, записи, уведомлений и удобного взаимодействия с аудиторией.</p>
-      </article>
-
-      <article class="service-card reveal">
-        <span class="service-number">04 / WORKFLOW</span>
-        <div class="service-icon" aria-hidden="true">⟲</div>
-        <h3>Автоматизация</h3>
-        <p>Связываем повторяющиеся действия в понятные сценарии и экономим рабочее время.</p>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-
-<section class="section portfolio" id="portfolio">
-  <div class="container">
-
-    <div class="section-head reveal">
-      <div>
-        <span class="eyebrow">Избранная работа</span>
-        <h2>Проекты</h2>
-      </div>
-
-      <p class="section-note">
-        Каждый проект — возможность соединить эстетику,
-        ясную коммуникацию и удобство для пользователя.
-      </p>
-    </div>
-
-    <article class="project-card reveal">
-
-      <a class="project-image"
-         href="https://snegggg970-gif.github.io/lumi-beauty/"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="Открыть сайт LUMI BEAUTY в новой вкладке">
-
-        <span class="project-tag">Концепт сайта / Beauty</span>
-
-        <img
-          src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=1300&q=85"
-          alt="Светлый минималистичный интерьер салона красоты"
-          loading="lazy">
-
-      </a>
-
-      <div class="project-info">
-
-        <span class="eyebrow">01 — Веб-дизайн и разработка</span>
-
-        <h3>LUMI<br>BEAUTY</h3>
-
-        <p>
-          Концептуальный сайт салона красоты в эстетике
-          премиального минимализма. Мягкая палитра,
-          выразительная типографика и структура,
-          в которой главное — услуги и впечатление от бренда.
-        </p>
-
-        <a class="text-link"
-           href="https://snegggg970-gif.github.io/lumi-beauty/"
-           target="_blank"
-           rel="noopener noreferrer">
-          Смотреть проект <span aria-hidden="true">↗</span>
-        </a>
-
-        <div class="project-meta">
-          <div>
-            <small>Формат</small>
-            <strong>Одностраничный сайт</strong>
-          </div>
-
-          <div>
-            <small>Направление</small>
-            <strong>Beauty / Lifestyle</strong>
-          </div>
-        </div>
-
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- PROCESS -->
-
-<section class="section" id="process">
-  <div class="container">
-
-    <div class="section-head reveal">
-      <div>
-        <span class="eyebrow">Понятно и прозрачно</span>
-        <h2>Этапы работы</h2>
-      </div>
-
-      <p class="section-note">
-        Двигаемся последовательно: сначала разбираемся в задаче,
-        затем предлагаем решение и доводим его до запуска.
-      </p>
-    </div>
-
-    <div class="process-grid">
-
-      <article class="process-item reveal">
-        <span class="process-no">01</span>
-        <h3>Знакомство</h3>
-        <p>Обсуждаем ваш бизнес, аудиторию, цели и ожидания от будущего решения.</p>
-      </article>
-
-      <article class="process-item reveal">
-        <span class="process-no">02</span>
-        <h3>Постановка задачи</h3>
-        <p>Фиксируем объём работ, функциональность, сроки и основные ориентиры проекта.</p>
-      </article>
-
-      <article class="process-item reveal">
-        <span class="process-no">03</span>
-        <h3>Разработка</h3>
-        <p>Проектируем, создаём и согласовываем решение, уделяя внимание деталям.</p>
-      </article>
-
-      <article class="process-item reveal">
-        <span class="process-no">04</span>
-        <h3>Запуск</h3>
-        <p>Проверяем результат, передаём проект и помогаем подготовиться к использованию.</p>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-
-<section class="section about" id="about">
-  <div class="container about-layout">
-
-    <div class="about-visual reveal">
-      <img
-        src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1100&q=85"
-        alt="Спокойное современное рабочее пространство"
-        loading="lazy">
-    </div>
-
-    <div class="about-copy reveal">
-
-      <span class="eyebrow">О студии</span>
-
-      <h2>
-        Меньше шума.<br>
-        <em>Больше смысла.</em>
-      </h2>
-
-      <p>
-        FORMA AI — небольшая студия цифровых решений для малого бизнеса.
-        Мы объединяем дизайн, веб-разработку и возможности искусственного
-        интеллекта, чтобы создавать практичные инструменты
-        с вниманием к каждой детали.
-      </p>
-
-      <div class="benefits">
-
-        <div class="benefit">
-          <strong>Индивидуальный подход</strong>
-          <span>Решение строится вокруг задачи, а не готового шаблона.</span>
-        </div>
-
-        <div class="benefit">
-          <strong>Эстетика и ясность</strong>
-          <span>Продуманный визуальный язык и понятная структура.</span>
-        </div>
-
-        <div class="benefit">
-          <strong>Современные инструменты</strong>
-          <span>Используем веб-технологии и ИИ там, где они полезны.</span>
-        </div>
-
-        <div class="benefit">
-          <strong>Фокус на результате</strong>
-          <span>Создаём функциональные решения без лишней сложности.</span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-
-<section class="section contact" id="contacts">
-  <div class="container contact-layout">
-
-    <div class="contact-copy reveal">
-
-      <span class="eyebrow">Следующий шаг</span>
-
-      <h2>
-        Давайте создадим<br>
-        <em style="font-family:Georgia,serif;font-weight:400">
-          что-то важное.
-        </em>
-      </h2>
-
-      <p>
-        Расскажите немного о своей задаче.
-        Мы познакомимся с проектом и обсудим,
-        какое цифровое решение подойдёт именно ему.
-      </p>
-
-      <div class="contact-note">
-        Форма на этой демонстрационной версии не отправляет
-        данные на сервер. После подключения сайта её можно
-        связать с почтой или CRM.
-      </div>
-
-    </div>
-
-    <form class="contact-form reveal" id="contactForm" novalidate>
-
-      <div class="field">
-        <label for="name">Ваше имя</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Как к вам обращаться"
-          autocomplete="name"
-          required>
-      </div>
-
-      <div class="field">
-        <label for="contact">Контакт для связи</label>
-        <input
-          id="contact"
-          name="contact"
-          type="text"
-          placeholder="Telegram, телефон или email"
-          required>
-      </div>
-
-      <div class="field field-full">
-        <label for="service">Что вас интересует?</label>
-        <input
-          id="service"
-          name="service"
-          type="text"
-          placeholder="Например, сайт или ИИ-ассистент">
-      </div>
-
-      <div class="field field-full">
-        <label for="message">Коротко о проекте</label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Расскажите о задаче и пожеланиях"></textarea>
-      </div>
-
-      <div class="form-bottom">
-        <button class="button" type="submit">
-          Отправить заявку
-          <span class="arrow" aria-hidden="true">↗</span>
-        </button>
-
-        <span class="form-hint">
-          Демонстрационная форма. Данные никуда не отправляются.
-        </span>
-      </div>
-
-      <p
-        class="form-status"
-        id="formStatus"
-        role="status"
-        aria-live="polite">
-      </p>
-
-    </form>
-  </div>
-</section>
-
-</main>
-
-<!-- FOOTER -->
-
-<footer class="footer">
-  <div class="container">
-
-    <div class="footer-top">
-
-      <a class="logo" href="#top">
-        <span class="logo-mark" aria-hidden="true"><span>F</span></span>
-        FORMA AI
-      </a>
-
-      <p class="footer-caption">
-        Цифровые решения с вниманием к деталям.
-      </p>
-
-      <div class="footer-links">
-        <a href="#services">Услуги</a>
-        <a href="#portfolio">Проекты</a>
-        <a href="#about">О студии</a>
-        <a href="#contacts">Контакты</a>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> FORMA AI. Все права защищены.</span>
-      <span>Создано с вниманием к форме и смыслу.</span>
-    </div>
-
-  </div>
-</footer>
-
-<script>
-(() => {
-
-  const body = document.body;
-  const toggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-
-  // МОБИЛЬНОЕ МЕНЮ
-
-  function closeMenu() {
-    body.classList.remove('menu-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Открыть меню');
-  }
-
-  toggle.addEventListener('click', () => {
-
-    const isOpen = body.classList.toggle('menu-open');
-
-    toggle.setAttribute('aria-expanded', String(isOpen));
-
-    toggle.setAttribute(
-      'aria-label',
-      isOpen ? 'Закрыть меню' : 'Открыть меню'
-    );
-
-  });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') closeMenu();
-  });
-
-  // ТЕКУЩИЙ ГОД
-
-  document.getElementById('year').textContent =
-    new Date().getFullYear();
-
-  // ДЕМОНСТРАЦИОННАЯ ФОРМА
-
-  const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
-
-  form.addEventListener('submit', event => {
-
-    event.preventDefault();
-
-    status.classList.remove('error');
-
-    const name = form.elements.name.value.trim();
-    const contact = form.elements.contact.value.trim();
-
-    if (!name || !contact) {
-
-      status.textContent =
-        'Пожалуйста, укажите имя и контакт для связи.';
-
-      status.classList.add('error');
-
-      (!name ? form.elements.name : form.elements.contact).focus();
-
-      return;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FORMA AI · ИИ-консультант — демо для портфолио</title>
+  <meta name="description" content="Живой пример ИИ-консультанта FORMA AI: отвечает на вопросы по услугам и ценам, собирает заявки, записывает на консультацию. Встраивается на любой сайт." />
+
+  <!--可以直接嵌入到任何页面：替换下面 4 строки на свой путь -->
+  <link rel="stylesheet" href="forma-chat.css" />
+
+  <style>
+    /* ---- Демо-страница FORMA AI (не входит в виджет) ---- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #ffffff; color: #0a0a0a; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    status.textContent =
-      'Спасибо! Это демонстрационная форма: заявка не отправлена, так как отправка пока не подключена.';
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-    form.reset();
+    /* --- Шапка --- */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
 
-  });
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .nav-logo span { color: #999; font-weight: 400; margin-left: 8px; }
 
-  // АНИМАЦИЯ ПОЯВЛЕНИЯ БЛОКОВ
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      color: #0a0a0a;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
 
-  const revealItems = document.querySelectorAll('.reveal');
+    /* --- Hero --- */
+    .hero { padding: 80px 0 60px; border-bottom: 1px solid #f0f0f0; }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: #999;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+    .hero h1 em { font-style: normal; color: #999; }
+    .hero-sub {
+      font-size: 18px;
+      color: #666;
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #0a0a0a;
+      color: #fff;
+      padding: 16px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s;
+    }
+    .hero-cta:hover { transform: translateY(-1px); }
+    .hero-cta-arrow { font-size: 16px; }
 
-  if (
-    'IntersectionObserver' in window &&
-    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  ) {
+    /* --- Разделы --- */
+    .section {
+      padding: 80px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
 
-    const observer = new IntersectionObserver((entries, obs) => {
+    .section-num {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: #999;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
 
-      entries.forEach(entry => {
+    .section h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
 
-        if (entry.isIntersecting) {
+    .section p {
+      font-size: 17px;
+      color: #444;
+      max-width: 640px;
+      margin-bottom: 16px;
+    }
 
-          entry.target.classList.add('is-visible');
+    /* --- Сетка возможностей --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .feature {
+      padding: 28px;
+      border: 1px solid #ececec;
+      border-radius: 16px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature:hover {
+      border-color: #0a0a0a;
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #0a0a0a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .feature h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .feature p {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+      max-width: none;
+    }
 
-          obs.unobserve(entry.target);
+    /* --- Демо-блок --- */
+    .demo-block {
+      background: #fafafa;
+      border-radius: 20px;
+      padding: 48px;
+      margin-top: 48px;
+      text-align: center;
+    }
+    .demo-block h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .demo-block p {
+      color: #666;
+      margin: 0 auto 24px;
+      max-width: 460px;
+    }
+    .demo-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0a0a0a;
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+    .demo-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(1.4); }
+    }
 
-        }
+    /* --- Технический блок --- */
+    .tech-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .tech-item {
+      padding: 16px 20px;
+      background: #fafafa;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+    .tech-item strong {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .tech-item code {
+      font-family: "SF Mono", Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: #0a0a0a;
+    }
 
-      });
+    /* --- Подвал --- */
+    .footer {
+      padding: 60px 0 40px;
+      color: #666;
+      font-size: 13px;
+    }
+    .footer-tagline {
+      font-size: 18px;
+      color: #0a0a0a;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .footer-meta {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .footer a {
+      color: #0a0a0a;
+      text-decoration: none;
+    }
 
-    }, { threshold: 0.12 });
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { padding: 48px 0; }
+      .section { padding: 56px 0; }
+      .demo-block { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
 
-    revealItems.forEach(item => observer.observe(item));
+  <header class="container">
+    <nav class="nav">
+      <div class="nav-logo">FORMA AI <span>· ИИ-консультант</span></div>
+      <div class="nav-links">
+        <a href="#features">Возможности</a>
+        <a href="#demo">Демо</a>
+        <a href="#tech">Технологии</a>
+        <a href="https://snegggg970-gif.github.io/forma-ai/" target="_blank">Сайт студии ↗</a>
+      </div>
+    </nav>
+  </header>
 
-  } else {
+  <main>
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero-eyebrow">ПРОЕКТ В ПОРТФОЛИО · 2025</div>
+      <h1>ИИ-консультант <em>для digital-студии</em></h1>
+      <p class="hero-sub">
+        Живой пример чат-бота, который отвечает на вопросы об услугах и ценах,
+        помогает оставить заявку и записаться на консультацию. Работает на статике
+        из коробки, подключается к GigaChat или YandexGPT при необходимости.
+      </p>
+      <button class="hero-cta" onclick="window.FORMA_CHAT.open()">
+        Открыть демо-чат
+        <span class="hero-cta-arrow">↗</span>
+      </button>
+    </section>
 
-    revealItems.forEach(item => {
-      item.classList.add('is-visible');
-    });
+    <!-- Возможности -->
+    <section class="section container" id="features">
+      <div class="section-num">01 / ВОЗМОЖНОСТИ</div>
+      <h2>Что умеет ИИ-консультант FORMA AI</h2>
+      <p>
+        Чат построен на базе знаний студии и работает в двух режимах:
+        демо (без API-ключа) и live (с реальной языковой моделью).
+        Один и тот же сценарий используется и в виджете на сайте, и в Telegram-боте.
+      </p>
 
-  }
+      <div class="grid">
+        <div class="feature">
+          <div class="feature-icon">01</div>
+          <h3>Q&amp;A по услугам</h3>
+          <p>Отвечает на вопросы о сайте-визитке, лендинге, ботах, ИИ-консультанте и автоматизации. Цены — из актуального прайса.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">02</div>
+          <h3>Сбор заявок</h3>
+          <p>Пошаговый сценарий: имя → контакт → описание задачи. Заявка уходит в Telegram или на email команды.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">03</div>
+          <h3>Запись на консультацию</h3>
+          <p>Выбор услуги → удобное время → контактные данные. Готовая запись передаётся команде FORMA AI.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">04</div>
+          <h3>Примеры работ</h3>
+          <p>По запросу показывает кейсы из портфолио — например, проект LUMI BEAUTY — со ссылкой на живой сайт.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">05</div>
+          <h3>Быстрые реплики</h3>
+          <p>Под каждым ответом — чипсы с дальнейшими шагами. Клиент не задумывается, что спросить дальше.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">06</div>
+          <h3>Брендовый интерфейс</h3>
+          <p>Минимализм, монохром, та же типографика, что и на сайте студии. Единый визуальный язык.</p>
+        </div>
+      </div>
+    </section>
 
-})();
-</script>
+    <!-- Демо -->
+    <section class="section container" id="demo">
+      <div class="section-num">02 / ЖИВОЕ ДЕМО</div>
+      <h2>Попробуйте прямо сейчас</h2>
+      <p>Нажмите на кнопку — откроется чат-виджет в правом нижнем углу. Спросите про цены, попросите записать на консультацию или оставьте заявку.</p>
 
+      <div class="demo-block">
+        <h3>ИИ-консультант онлайн</h3>
+        <p>Бот работает в mock-режиме — отвечает сразу на основе базы знаний FORMA AI. Без задержек и без API-ключа.</p>
+        <button class="demo-cta" onclick="window.FORMA_CHAT.open()">
+          <span class="demo-pulse"></span>
+          Открыть чат
+        </button>
+      </div>
+    </section>
+
+    <!-- Технологии -->
+    <section class="section container" id="tech">
+      <div class="section-num">03 / ТЕХНОЛОГИИ</div>
+      <h2>Под капотом</h2>
+      <p>Виджет собирается из трёх файлов и не требует сборки. Можно выложить на GitHub Pages как есть — он заработает сразу. Для подключения реальной языковой модели нужен небольшой serverless-прокси (Cloudflare Worker или Vercel function).</p>
+
+      <div class="tech-list">
+        <div class="tech-item"><strong>Фронтенд</strong><code>HTML / CSS / Vanilla JS</code></div>
+        <div class="tech-item"><strong>Размер</strong><code>~22 KB (всё включено)</code></div>
+        <div class="tech-item"><strong>Хостинг</strong><code>GitHub Pages / любой статический</code></div>
+        <div class="tech-item"><strong>LLM (опц.)</strong><code>GigaChat / YandexGPT</code></div>
+        <div class="tech-item"><strong>Прокси (опц.)</strong><code>Cloudflare Worker / Vercel</code></div>
+        <div class="tech-item"><strong>Зависимости</strong><code>0 внешних библиотек</code></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <div class="footer-tagline">Меньше шума. Больше смысла.</div>
+    <div class="footer-meta">
+      <div>© FORMA AI · Независимая digital-студия</div>
+      <div>
+        <a href="https://snegggg970-gif.github.io/forma-ai/" target="_blank">forma-ai.github.io</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FORMA AI Chat Widget ===== -->
+  <script>
+    // Конфигурация виджета.
+    // mode: 'mock' — работает сразу без API-ключа (для демо на статике).
+    // mode: 'live' + llmEndpoint — подключается реальный LLM через serverless-прокси.
+    window.FORMA_CHAT_CONFIG = {
+      mode: 'mock',
+      llmProvider: 'gigachat',
+      llmEndpoint: '',
+      autoOpen: false,
+      // Раскомментируйте, чтобы виджет сам отправлял заявки вам в Telegram/на почту:
+      // leadEndpoint: 'https://your-worker.example.workers.dev/api/lead',
+    };
+  </script>
+  <script src="knowledge-base.js"></script>
+  <script src="llm-adapter.js"></script>
+  <script src="forma-chat.js"></script>
 </body>
 </html>
