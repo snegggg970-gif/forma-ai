@@ -15,12 +15,11 @@ window.FORMA_KB = {
     description: 'Независимая digital-студия. Создаём сайты и цифровые инструменты, которые помогают компаниям выглядеть убедительно, удобнее взаимодействовать с клиентами и эффективнее работать.',
     site: 'https://snegggg970-gif.github.io/forma-ai/',
     contact: {
-      telegram: '@forma_ai',
-      email: 'hello@forma-ai.studio',
-      // Заполните при деплое:
-      phone: '',
+      telegram: '@snezhana_forma',
+      email: 'forma-ai.studio@yandex.ru',
+      phone: '+79104452771',
     },
-    workingHours: 'Пн–Пт, 10:00–19:00 (МСК)',
+    workingHours: 'Ежедневно, 09:00–22:00 (МСК)',
   },
 
   // -------- Приветствие --------
@@ -148,7 +147,7 @@ window.FORMA_KB = {
       title: 'Контакты',
       intents: ['контакт', 'связаться', 'контакты', 'где вы', 'телефон', 'почта', 'email', 'telegram'],
       keywords: ['контакт', 'связаться', 'телефон', 'почта', 'email', 'telegram', 'телеграм'],
-      answer: 'Связаться с FORMA AI:\n\n• Сайт: https://snegggg970-gif.github.io/forma-ai/\n• Telegram: @forma_ai\n• Email: hello@forma-ai.studio\n• Время работы: Пн–Пт, 10:00–19:00 (МСК)\n\nИли оставьте заявку прямо здесь — я передам её команде.',
+      answer: 'Связаться с FORMA AI:\n\n• Сайт: https://snegggg970-gif.github.io/forma-ai/\n• Telegram: @snezhana_forma\n• Email: forma-ai.studio@yandex.ru\n• Телефон: +79104452771\n• Время работы: Ежедневно, 09:00–22:00 (МСК)\n\nИли оставьте заявку прямо здесь — я передам её команде.',
       quickReplies: [
         { label: 'Оставить заявку', action: 'intent:lead' },
         { label: 'Записаться на консультацию', action: 'intent:book' },
@@ -177,13 +176,13 @@ window.FORMA_KB = {
       { key: 'contact', prompt: 'Удобный способ связи (Telegram, телефон или email)?', placeholder: '@telegram, +7... или email', validate: (v) => v.trim().length >= 3 },
       { key: 'task', prompt: 'Коротко опишите задачу: какой сайт/бот/инструмент нужен и для какого бизнеса.', placeholder: 'Например: лендинг для студии маникюра, 5-7 дней', validate: (v) => v.trim().length >= 5 },
     ],
-    success: 'Спасибо! Заявка принята. Мы свяжемся с вами в течение рабочего дня (Пн–Пт, 10:00–19:00 МСК).\n\nЕсли срочнее — пишите в Telegram: @forma_ai',
+    success: 'Спасибо! Заявка принята. Мы свяжемся с вами в течение рабочего дня (Ежедневно, 09:00–22:00 МСК).\n\nЕсли срочнее — пишите в Telegram: @snezhana_forma',
     cancel: 'Заявка отменена. Если что-то изменится — пишите «хочу оставить заявку», и я подхвачу.',
   },
 
   // -------- Сценарий записи на консультацию --------
   bookingFlow: {
-    intro: 'Запишемся на консультацию. Подберём удобный формат — 30 минут по видеосвязи или в Telegram.',
+    intro: 'Запишемся на консультацию. Подберём удобный формат в Telegram.',
     serviceOptions: [
       { id: 'website', label: 'Сайт-визитка или лендинг' },
       { id: 'bot', label: 'Telegram-бот или бот с записью' },
@@ -200,7 +199,7 @@ window.FORMA_KB = {
       { key: 'name', prompt: 'Как вас зовут?', validate: (v) => v.trim().length >= 2 },
       { key: 'contact', prompt: 'Куда удобнее отправить подтверждение? (Telegram или email)', validate: (v) => v.trim().length >= 3 },
     ],
-    success: 'Готово! Запись на консультацию оформлена.\n\nЯ передала заявку команде FORMA AI — свяжемся с вами в течение рабочего дня, чтобы подтвердить дату и время.\n\nЕсли нужно срочно — Telegram: @forma_ai',
+    success: 'Готово! Запись на консультацию оформлена.\n\nЯ передала заявку команде FORMA AI — свяжемся с вами в течение рабочего дня, чтобы подтвердить дату и время. Время работы: Ежедневно, 09:00–22:00 (МСК).\n\nЕсли нужно срочно — Telegram: @snezhana_forma',
     cancel: 'Запись отменена. Когда будете готовы — пишите «хочу записаться», и начнём заново.',
   },
 
