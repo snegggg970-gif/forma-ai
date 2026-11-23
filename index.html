@@ -520,6 +520,175 @@ h2 {
   font-weight: 600;
 }
 
+.project-card + .project-card { margin-top: 24px; }
+
+/* LUMI BEAUTY TELEGRAM BOT CASE */
+.bot-project-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255,255,255,.48), transparent 32%),
+    linear-gradient(135deg, #cfc2b2, #a99a88 58%, #817565);
+}
+
+.bot-project-image::before {
+  content: "LUMI BEAUTY  /  ONLINE BOOKING";
+  position: absolute;
+  z-index: 1;
+  top: 28px;
+  left: 28px;
+  color: rgba(255,255,255,.86);
+  font-size: 9px;
+  letter-spacing: .2em;
+}
+
+.bot-phone {
+  position: relative;
+  z-index: 1;
+  width: min(286px, 66%);
+  padding: 10px;
+  border: 6px solid #282724;
+  border-radius: 34px;
+  background: #faf8f4;
+  box-shadow: 0 28px 65px rgba(31,27,23,.28);
+  transform: rotate(-4deg);
+}
+
+.bot-phone-screen {
+  min-height: 365px;
+  padding: 20px 13px 15px;
+  border-radius: 21px;
+  background: #eee9e1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bot-phone-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(36,36,33,.12);
+}
+
+.bot-phone-mark {
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #d8cbbb;
+  color: #4b4035;
+  font: 600 11px var(--display);
+}
+
+.bot-phone-brand strong {
+  display: block;
+  font: 700 10px var(--display);
+  letter-spacing: .1em;
+}
+
+.bot-phone-brand small {
+  color: #81786e;
+  font-size: 8px;
+}
+
+.bot-bubble {
+  max-width: 92%;
+  padding: 10px 11px;
+  border-radius: 12px 12px 12px 3px;
+  background: #faf8f4;
+  color: #4b463f;
+  font-size: 9px;
+  line-height: 1.55;
+  box-shadow: 0 2px 7px rgba(36,36,33,.04);
+}
+
+.bot-bubble.user {
+  align-self: flex-end;
+  border-radius: 12px 12px 3px 12px;
+  background: #d9e4d3;
+}
+
+.bot-choice {
+  padding: 9px 10px;
+  border: 1px solid #c8b8a5;
+  border-radius: 8px;
+  color: #574b3f;
+  background: rgba(250,248,244,.8);
+  text-align: center;
+  font-size: 9px;
+}
+
+.bot-choice.active { background: #d8cbbb; }
+
+.project-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px 18px;
+  width: 100%;
+  margin: 0 0 26px;
+}
+
+.project-features span {
+  position: relative;
+  padding-left: 15px;
+  color: #625d56;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.project-features span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 25px;
+}
+
+.project-qr {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.project-qr img {
+  display: block;
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+}
+
+.project-qr span {
+  max-width: 115px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.project-qr strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-size: 10px;
+}
+
 /* PROCESS */
 
 .process-grid {
@@ -951,6 +1120,12 @@ h2 {
 
   .project-info h3 { font-size: 48px; }
 
+  .bot-phone { width: min(270px, 76%); }
+  .bot-phone-screen { min-height: 330px; }
+  .project-features { grid-template-columns: 1fr; gap: 9px; }
+  .project-actions { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .project-qr { width: 100%; max-width: 250px; }
+
   .process-grid {
     grid-template-columns: 1fr 1fr;
     row-gap: 35px;
@@ -1314,6 +1489,72 @@ h2 {
           </div>
         </div>
 
+      </div>
+    </article>
+
+    <article class="project-card reveal">
+      <a class="project-image bot-project-image"
+         href="https://t.me/lumi_beauty_demo_bot"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Открыть демонстрационного Telegram-бота LUMI BEAUTY">
+        <span class="project-tag">Telegram / Онлайн-запись</span>
+        <div class="bot-phone" aria-hidden="true">
+          <div class="bot-phone-screen">
+            <div class="bot-phone-brand">
+              <span class="bot-phone-mark">LB</span>
+              <div><strong>LUMI BEAUTY</strong><small>онлайн-запись</small></div>
+            </div>
+            <div class="bot-bubble">Здравствуйте! Выберите услугу, чтобы записаться в LUMI BEAUTY.</div>
+            <div class="bot-choice active">Маникюр · 3 465 ₽</div>
+            <div class="bot-choice">Педикюр · 4 095 ₽</div>
+            <div class="bot-bubble user">Выбрать дату и время</div>
+            <div class="bot-bubble">Покажу свободные интервалы с учётом длительности процедуры.</div>
+          </div>
+        </div>
+      </a>
+
+      <div class="project-info">
+        <span class="eyebrow">03 — Telegram и автоматизация</span>
+        <h3>LUMI BEAUTY<br>Booking Bot</h3>
+        <p>
+          Демонстрационный Telegram-бот для салона красоты. Клиент выбирает услугу,
+          дату и свободное время, оставляет контактные данные и получает подтверждение.
+          Расписание учитывает продолжительность процедур и занятые интервалы.
+        </p>
+
+        <div class="project-features" aria-label="Возможности бота">
+          <span>Каталог из пяти услуг с ценами</span>
+          <span>Выбор даты и свободного времени</span>
+          <span>Учёт длительности процедур от 20 до 135 минут</span>
+          <span>Администрирование записей и блокировок</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="button"
+             href="https://t.me/lumi_beauty_demo_bot"
+             target="_blank"
+             rel="noopener noreferrer">
+            Открыть бота в Telegram <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="project-qr">
+            <img src="data:image/png;base64,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"
+                 alt="QR-код для открытия Telegram-бота LUMI BEAUTY"
+                 loading="lazy">
+            <span><strong>Попробовать демо</strong>Отсканируйте QR-код камерой телефона</span>
+          </div>
+        </div>
+
+        <div class="project-meta">
+          <div>
+            <small>Формат</small>
+            <strong>Telegram-бот / онлайн-запись</strong>
+          </div>
+          <div>
+            <small>Статус</small>
+            <strong>Демонстрационный проект</strong>
+          </div>
+        </div>
       </div>
     </article>
   </div>
